@@ -80,6 +80,14 @@ export default function RootLayout({
         style={{ fontFamily: "var(--font-body)" }}
       >
         {children}
+        {/* Adsterra Social Bar — set NEXT_PUBLIC_ADSTERRA_SOCIAL_BAR_ID to activate */}
+        {process.env.NEXT_PUBLIC_ADSTERRA_SOCIAL_BAR_ID && (
+          <script
+            async
+            data-cfasync="false"
+            src={`//www.highperformanceformat.com/${process.env.NEXT_PUBLIC_ADSTERRA_SOCIAL_BAR_ID}/invoke.js`}
+          />
+        )}
       </body>
     </html>
   );
