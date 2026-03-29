@@ -41,8 +41,8 @@ export default function StatCard({
           style={{
             background: isWinnerA
               ? "rgba(212,160,23,0.15)"
-              : "rgba(212,160,23,0.15)",
-            color: "var(--color-gold-400)",
+              : "rgba(59,130,246,0.15)",
+            color: isWinnerA ? "var(--color-gold-400)" : "#60a5fa",
           }}
         >
           <span>{isWinnerA ? flagA : flagB}</span>

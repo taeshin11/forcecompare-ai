@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, Suspense } from "react";
+import { useState, useEffect, useCallback, useRef, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import type { Country, ComparisonResult } from "@/lib/types";
 import { compareCountries } from "@/lib/calculatePowerScore";
@@ -23,6 +23,7 @@ function CompareApp() {
   const [selectedB, setSelectedB] = useState<Country | null>(null);
   const [result, setResult] = useState<ComparisonResult | null>(null);
   const [isComparing, setIsComparing] = useState(false);
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   // Load country data
   useEffect(() => {
@@ -47,6 +48,7 @@ function CompareApp() {
             setSelectedB(b);
             const compResult = compareCountries(a, b, data.countries);
             setResult(compResult);
+            document.title = `ForceCompare AI — ${a.name} vs ${b.name}`;
           }
         }
       })
@@ -65,11 +67,18 @@ function CompareApp() {
     // Update URL
     router.push(`?a=${selectedA.code}&b=${selectedB.code}`, { scroll: false });
 
-    // Brief delay for animation
     setTimeout(() => {
       const compResult = compareCountries(selectedA, selectedB, countries);
       setResult(compResult);
       setIsComparing(false);
+
+      // Update page title with country names
+      document.title = `ForceCompare AI — ${selectedA.name} vs ${selectedB.name}`;
+
+      // Scroll to results
+      setTimeout(() => {
+        resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
 
       trackComparison({
         countryA: selectedA.name,
@@ -132,12 +141,12 @@ function CompareApp() {
       )}
 
       {result && (
-        <>
+        <div ref={resultsRef}>
           <VerdictBanner result={result} />
           <AdContainer slot="middle" className="py-4" />
           <ComparisonDashboard result={result} />
           <Disclaimer />
-        </>
+        </div>
       )}
 
       <Footer />
