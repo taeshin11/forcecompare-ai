@@ -15,8 +15,8 @@
     { "id": 13, "name": "Google Sheets webhook integration + tracking utility", "status": "done", "milestone": true, "priority": "P1" },
     { "id": 14, "name": "Disclaimer section", "status": "done", "milestone": false, "priority": "P2" },
     { "id": 15, "name": "Performance optimization (lazy loading, minimal bundle)", "status": "done", "milestone": false, "priority": "P2" },
-    { "id": 16, "name": "Vercel deployment via CLI", "status": "in-progress", "milestone": true, "priority": "P0" },
-    { "id": 17, "name": "Short URL generation (is.gd)", "status": "pending", "milestone": false, "priority": "P1" },
-    { "id": 18, "name": "Final QA review pass", "status": "pending", "milestone": true, "priority": "P0" }
+    { "id": 16, "name": "Vercel deployment via CLI", "status": "done", "milestone": true, "priority": "P0" },
+    { "id": 17, "name": "Short URL generation (is.gd)", "status": "done", "milestone": false, "priority": "P1" },
+    { "id": 18, "name": "Final QA review pass", "status": "done", "milestone": true, "priority": "P0" }
   ]
 }

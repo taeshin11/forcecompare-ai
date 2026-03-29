@@ -4,7 +4,7 @@ Select two nations. See who dominates. Compare military strength across land, ai
 
 ## Live Demo
 
-Deployed on Vercel (link updated after deployment).
+**[https://is.gd/xJfCs0](https://forcecompare-ai.vercel.app)**
 
 ## Tech Stack
 
@@ -16,7 +16,7 @@ Deployed on Vercel (link updated after deployment).
 ## Run Locally
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/forcecompare-ai.git
+git clone https://github.com/taeshin11/forcecompare-ai.git
 cd forcecompare-ai
 npm install
 npm run dev
