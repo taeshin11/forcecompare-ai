@@ -11,7 +11,6 @@ import ComparisonDashboard from "@/components/ComparisonDashboard";
 import VerdictBanner from "@/components/VerdictBanner";
 import Disclaimer from "@/components/Disclaimer";
 import AdContainer from "@/components/AdContainer";
-import Footer from "@/components/Footer";
 
 function CompareApp() {
   const searchParams = useSearchParams();
@@ -149,7 +148,6 @@ function CompareApp() {
         </div>
       )}
 
-      <Footer />
     </>
   );
 }

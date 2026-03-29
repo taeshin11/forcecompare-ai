@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Chakra_Petch, IBM_Plex_Sans } from "next/font/google";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const chakraPetch = Chakra_Petch({
@@ -80,6 +81,7 @@ export default function RootLayout({
         style={{ fontFamily: "var(--font-body)" }}
       >
         {children}
+        <Footer />
         {/* Adsterra Social Bar (push notification style ads) */}
         <script
           async
