@@ -53,6 +53,8 @@ function Dropdown({
       </label>
       <button
         onClick={() => setOpen(!open)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
         className="w-full flex items-center gap-2 px-4 py-3 rounded-lg bg-[var(--color-card-bg)] border border-[var(--color-card-border)] hover:border-[var(--color-gold-500)] transition-colors text-left"
       >
         {selected ? (
@@ -68,6 +70,7 @@ function Dropdown({
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
@@ -78,13 +81,14 @@ function Dropdown({
         </svg>
       </button>
       {open && (
-        <div className="absolute z-50 mt-1 w-full rounded-lg bg-[var(--color-navy-900)] border border-[var(--color-card-border)] shadow-xl max-h-60 overflow-hidden">
+        <div role="listbox" aria-label={`${label} options`} className="absolute z-50 mt-1 w-full rounded-lg bg-[var(--color-navy-900)] border border-[var(--color-card-border)] shadow-xl max-h-60 overflow-hidden">
           <div className="p-2 border-b border-[var(--color-card-border)]">
             <input
               type="text"
               placeholder="Search..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              aria-label={`Search countries for ${label}`}
               className="w-full px-3 py-2 rounded bg-[var(--color-navy-950)] border border-[var(--color-card-border)] text-white text-sm focus:outline-none focus:border-[var(--color-gold-500)]"
               autoFocus
             />
@@ -92,6 +96,8 @@ function Dropdown({
           <div className="overflow-y-auto max-h-48">
             {filtered.map((country) => (
               <button
+                role="option"
+                aria-selected={selected?.code === country.code}
                 key={country.code}
                 onClick={() => {
                   onSelect(country);

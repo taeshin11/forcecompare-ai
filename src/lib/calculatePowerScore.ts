@@ -18,7 +18,7 @@ function normalize(value: number, countries: Country[], getter: (c: Country) => 
 function subWinner(a: number, b: number, codeA: string, codeB: string): string {
   if (a > b) return codeA;
   if (b > a) return codeB;
-  return codeA; // tie goes to A
+  return "tie";
 }
 
 export function compareCountries(
@@ -100,16 +100,12 @@ export function compareCountries(
       winnerCode: subWinner(f.getter(countryA), f.getter(countryB), countryA.code, countryB.code),
     }));
 
-    // Category winner based on number of subcategory wins
-    const winsA = subcategories.filter((s) => s.winnerCode === countryA.code).length;
-    const winsB = subcategories.filter((s) => s.winnerCode === countryB.code).length;
-
     return {
       category: {
         name,
         icon,
         subcategories,
-        winnerCode: winsA >= winsB ? countryA.code : countryB.code,
+        winnerCode: scoreA >= scoreB ? countryA.code : countryB.code,
       },
       scoreA,
       scoreB,

@@ -48,7 +48,9 @@ export default function BarChart({
               background:
                 winnerCode === codeA
                   ? "linear-gradient(90deg, var(--color-gold-500), var(--color-gold-400))"
-                  : "linear-gradient(90deg, #374151, #4b5563)",
+                  : winnerCode === "tie"
+                    ? "linear-gradient(90deg, #6b7280, #9ca3af)"
+                    : "linear-gradient(90deg, #374151, #4b5563)",
             }}
           />
           <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs font-medium text-white">
@@ -67,7 +69,9 @@ export default function BarChart({
               background:
                 winnerCode === codeB
                   ? "linear-gradient(90deg, var(--color-gold-500), var(--color-gold-400))"
-                  : "linear-gradient(90deg, #374151, #4b5563)",
+                  : winnerCode === "tie"
+                    ? "linear-gradient(90deg, #6b7280, #9ca3af)"
+                    : "linear-gradient(90deg, #374151, #4b5563)",
             }}
           />
           <span className="absolute right-2 top-1/2 -translate-y-1/2 text-xs font-medium text-white">

@@ -1,3 +1,5 @@
+"use client";
+
 import VisitorCounter from "./VisitorCounter";
 
 export default function Footer() {
@@ -11,7 +13,7 @@ export default function Footer() {
               href="https://www.globalfirepower.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[var(--color-gold-400)] transition-colors"
+              className="text-gray-400 hover:text-[var(--color-gold-400)] hover:underline transition-colors"
             >
               Global Firepower Index
             </a>

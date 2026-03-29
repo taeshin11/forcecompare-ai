@@ -18,6 +18,7 @@ function CompareApp() {
   const router = useRouter();
   const [countries, setCountries] = useState<Country[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [selectedA, setSelectedA] = useState<Country | null>(null);
   const [selectedB, setSelectedB] = useState<Country | null>(null);
   const [result, setResult] = useState<ComparisonResult | null>(null);
@@ -44,15 +45,16 @@ function CompareApp() {
           if (a && b) {
             setSelectedA(a);
             setSelectedB(b);
-            // Auto-compare if URL params are present
-            setTimeout(() => {
-              const compResult = compareCountries(a, b, data.countries);
-              setResult(compResult);
-            }, 300);
+            const compResult = compareCountries(a, b, data.countries);
+            setResult(compResult);
           }
         }
       })
-      .catch(() => setLoading(false));
+      .catch((err) => {
+        setError("Failed to load military data. Please refresh the page.");
+        setLoading(false);
+        console.error("Data load failed:", err);
+      });
   }, [searchParams]);
 
   const handleCompare = useCallback(() => {
@@ -63,13 +65,12 @@ function CompareApp() {
     // Update URL
     router.push(`?a=${selectedA.code}&b=${selectedB.code}`, { scroll: false });
 
-    // Simulate brief analysis delay for UX
+    // Brief delay for animation
     setTimeout(() => {
       const compResult = compareCountries(selectedA, selectedB, countries);
       setResult(compResult);
       setIsComparing(false);
 
-      // Track comparison to Google Sheets
       trackComparison({
         countryA: selectedA.name,
         countryB: selectedB.name,
@@ -77,15 +78,31 @@ function CompareApp() {
         powerScoreA: compResult.scoreA,
         powerScoreB: compResult.scoreB,
       });
-    }, 600);
+    }, 250);
   }, [selectedA, selectedB, countries, router]);
 
   if (loading) {
     return (
-      <div className="flex-1 flex items-center justify-center">
+      <div className="flex-1 flex items-center justify-center" role="status" aria-label="Loading">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-[var(--color-gold-500)] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <p className="text-gray-400">Loading military data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex-1 flex items-center justify-center">
+        <div className="text-center px-4">
+          <p className="text-red-400 text-lg mb-2">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-6 py-2 rounded-lg bg-[var(--color-gold-500)] text-[var(--color-navy-950)] font-medium"
+          >
+            Retry
+          </button>
         </div>
       </div>
     );
@@ -106,7 +123,7 @@ function CompareApp() {
       />
 
       {isComparing && (
-        <div className="flex items-center justify-center py-12">
+        <div className="flex items-center justify-center py-12" role="status" aria-label="Analyzing">
           <div className="text-center">
             <div className="w-10 h-10 border-4 border-[var(--color-gold-500)] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
             <p className="text-gray-400 text-sm">Analyzing forces...</p>
