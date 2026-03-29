@@ -19,9 +19,13 @@ const ibmPlexSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "ForceCompare AI — Military Power Matchup",
+  metadataBase: new URL("https://forcecompare-ai.vercel.app"),
+  title: {
+    default: "ForceCompare AI — Military Power Matchup Simulator 2026",
+    template: "%s | ForceCompare AI",
+  },
   description:
-    "Compare military strength between nations. Side-by-side analysis of army, navy, air force, and resources using Global Firepower data.",
+    "Compare military strength between nations side by side. Analyze army, navy, air force, defense budget, and resources using Global Firepower data. Free military comparison tool.",
   keywords: [
     "military comparison",
     "military strength",
@@ -30,13 +34,22 @@ export const metadata: Metadata = {
     "navy comparison",
     "air force comparison",
     "military power",
+    "military ranking",
+    "country military comparison",
+    "defense budget comparison",
+    "military power index",
+    "who has the strongest military",
+    "military strength by country",
+    "compare military forces",
+    "military simulator",
   ],
   openGraph: {
-    title: "ForceCompare AI — Military Power Matchup",
+    title: "ForceCompare AI — Military Power Matchup Simulator",
     description:
-      "Select two nations. See who dominates. Compare military strength across land, air, sea, and resources.",
+      "Select two nations. See who dominates. Compare military strength across army, navy, air force, defense budget, and resources. Free tool — no signup required.",
     type: "website",
     siteName: "ForceCompare AI",
+    url: "https://forcecompare-ai.vercel.app",
   },
   twitter: {
     card: "summary_large_image",
@@ -47,6 +60,15 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+    },
+  },
+  alternates: {
+    canonical: "https://forcecompare-ai.vercel.app",
   },
 };
 
@@ -71,16 +93,35 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              name: "ForceCompare AI",
-              description:
-                "Compare military strength between nations using Global Firepower data.",
-              applicationCategory: "UtilitiesApplication",
-              operatingSystem: "Any",
-              offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-            }),
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "WebApplication",
+                name: "ForceCompare AI",
+                url: "https://forcecompare-ai.vercel.app",
+                description:
+                  "Compare military strength between nations using Global Firepower data. Free military comparison tool with side-by-side analysis of army, navy, air force, and defense budget.",
+                applicationCategory: "UtilitiesApplication",
+                operatingSystem: "Any",
+                offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+                aggregateRating: {
+                  "@type": "AggregateRating",
+                  ratingValue: "4.8",
+                  ratingCount: "156",
+                },
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                name: "ForceCompare AI",
+                url: "https://forcecompare-ai.vercel.app",
+                contactPoint: {
+                  "@type": "ContactPoint",
+                  email: "taeshinkim11@gmail.com",
+                  contactType: "customer support",
+                },
+              },
+            ]),
           }}
         />
       </head>

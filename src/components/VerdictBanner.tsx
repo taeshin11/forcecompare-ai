@@ -21,7 +21,7 @@ export default function VerdictBanner({ result }: VerdictBannerProps) {
   return (
     <section className="px-4 py-10">
       <div className="max-w-3xl mx-auto">
-        <div className="animate-verdict rounded-2xl border border-[var(--color-gold-500)]/30 bg-gradient-to-br from-[var(--color-navy-800)] to-[var(--color-navy-900)] p-8 text-center" role="alert">
+        <div className="animate-verdict rounded-2xl border border-[var(--color-gold-500)]/30 bg-gradient-to-br from-[var(--color-navy-800)] to-[var(--color-navy-900)] p-8 text-center" role="region" aria-label="Comparison verdict">
           {/* Score circles */}
           <div className="flex items-center justify-center gap-8 mb-6">
             <div className="text-center">
