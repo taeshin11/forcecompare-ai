@@ -1,0 +1,22 @@
+{
+  "features": [
+    { "id": 1, "name": "Project scaffold (Next.js + Tailwind + TypeScript + ESLint)", "status": "done", "milestone": true, "priority": "P0" },
+    { "id": 2, "name": "Static JSON data file with 50+ countries", "status": "done", "milestone": false, "priority": "P0" },
+    { "id": 3, "name": "Country selector UI (two dropdowns with flag + search)", "status": "done", "milestone": false, "priority": "P0" },
+    { "id": 4, "name": "Core comparison logic (weighted power score calculation)", "status": "done", "milestone": true, "priority": "P0" },
+    { "id": 5, "name": "Comparison dashboard UI (side-by-side cards, bar charts, category winners)", "status": "done", "milestone": false, "priority": "P0" },
+    { "id": 6, "name": "Verdict banner with animation", "status": "done", "milestone": false, "priority": "P0" },
+    { "id": 7, "name": "Responsive design pass (mobile, tablet, desktop)", "status": "done", "milestone": true, "priority": "P0" },
+    { "id": 8, "name": "SEO: meta tags, OG tags, JSON-LD, sitemap, robots.txt", "status": "done", "milestone": false, "priority": "P1" },
+    { "id": 9, "name": "Shareable URL via query params (?a=US&b=CN)", "status": "done", "milestone": false, "priority": "P1" },
+    { "id": 10, "name": "Visitor counter integration (free API)", "status": "done", "milestone": true, "priority": "P1" },
+    { "id": 11, "name": "Adsterra ad placeholders + responsive ad containers", "status": "done", "milestone": false, "priority": "P1" },
+    { "id": 12, "name": "ads.txt file", "status": "done", "milestone": false, "priority": "P1" },
+    { "id": 13, "name": "Google Sheets webhook integration + tracking utility", "status": "done", "milestone": true, "priority": "P1" },
+    { "id": 14, "name": "Disclaimer section", "status": "done", "milestone": false, "priority": "P2" },
+    { "id": 15, "name": "Performance optimization (lazy loading, minimal bundle)", "status": "done", "milestone": false, "priority": "P2" },
+    { "id": 16, "name": "Vercel deployment via CLI", "status": "in-progress", "milestone": true, "priority": "P0" },
+    { "id": 17, "name": "Short URL generation (is.gd)", "status": "pending", "milestone": false, "priority": "P1" },
+    { "id": 18, "name": "Final QA review pass", "status": "pending", "milestone": true, "priority": "P0" }
+  ]
+}

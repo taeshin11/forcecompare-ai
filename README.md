@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ForceCompare AI — Military Power Matchup
 
-## Getting Started
+Select two nations. See who dominates. Compare military strength across land, air, sea, and resources.
 
-First, run the development server:
+## Live Demo
+
+Deployed on Vercel (link updated after deployment).
+
+## Tech Stack
+
+- **Next.js 16** (App Router, TypeScript)
+- **Tailwind CSS v4**
+- **Static JSON data** (no backend required)
+- **Vercel** (free tier hosting)
+
+## Run Locally
 
 ```bash
+git clone https://github.com/YOUR_USERNAME/forcecompare-ai.git
+cd forcecompare-ai
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Google Sheets Tracking
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+See [SETUP_GOOGLE_SHEETS.md](./SETUP_GOOGLE_SHEETS.md) for instructions on connecting comparison tracking to a Google Spreadsheet.
 
-## Learn More
+## Adsterra Ads
 
-To learn more about Next.js, take a look at the following resources:
+Ad placeholder components are built into the UI. After signing up at [Adsterra](https://adsterra.com):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Get your ad unit codes from the Adsterra dashboard
+2. Replace the placeholder comments in `src/components/AdContainer.tsx`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Data Source
 
-## Deploy on Vercel
+All military data is compiled from [Global Firepower Index](https://www.globalfirepower.com) public rankings. 50+ countries included.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Disclaimer
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This is a purely numerical comparison based on publicly available data. It does not account for: nuclear weapons, alliance networks, technology quality, terrain advantages, cyber warfare, troop morale, or economic sustainability. Real-world outcomes depend on countless factors beyond raw numbers.

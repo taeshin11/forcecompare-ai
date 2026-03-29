@@ -1,0 +1,3 @@
+# Adsterra ads.txt
+# Replace with your actual Adsterra publisher ID after account approval
+# Example: adsterra.com, PUBLISHER_ID, DIRECT
