@@ -61,6 +61,7 @@ export default function RootLayout({
       className={`${chakraPetch.variable} ${ibmPlexSans.variable} h-full antialiased`}
     >
       <head>
+        <meta name="google-site-verification" content="WddgcbVJsL2BGHNAje5m6DK56IcR0Mw5UOqozI2Xtrc" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
