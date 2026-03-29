@@ -537,4 +537,5 @@ Claude Code must generate a README.md with:
 
 ---
 
-*End of PRD. Claude Code: follow this document precisely. Build autonomously. Push at milestones. Automate everything possible via CLI.*lease complete all instr
+*End of PRD. Claude Code: follow this document precisely. Build autonomously. Push at milestones. Automate everything possible via CLI.*lease complete all instr11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111Please complete all instructions in the PRD.md file. Once fully completed, proceed with further improvements. IF you think we don't need more improvement, then stop. Don't ask me to do something. You do everything. Use CLI or gcloud or whatever. You do all the auth. Find the way to do auth automatically.If all the work is done, check the live site and find areas to improve.
+111111111111

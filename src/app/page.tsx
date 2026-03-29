@@ -11,6 +11,8 @@ import ComparisonDashboard from "@/components/ComparisonDashboard";
 import VerdictBanner from "@/components/VerdictBanner";
 import Disclaimer from "@/components/Disclaimer";
 import AdContainer from "@/components/AdContainer";
+import PopularMatchups from "@/components/PopularMatchups";
+import ShareButtons from "@/components/ShareButtons";
 
 function CompareApp() {
   const searchParams = useSearchParams();
@@ -142,12 +144,20 @@ function CompareApp() {
       {result && (
         <div ref={resultsRef}>
           <VerdictBanner result={result} />
+          <ShareButtons
+            countryA={result.countryA.name}
+            countryB={result.countryB.name}
+            winner={result.winner.name}
+            scoreA={result.scoreA}
+            scoreB={result.scoreB}
+          />
           <AdContainer slot="middle" className="py-4" />
           <ComparisonDashboard result={result} />
           <Disclaimer />
         </div>
       )}
 
+      {!result && <PopularMatchups />}
     </>
   );
 }

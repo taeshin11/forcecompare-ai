@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Chakra_Petch, IBM_Plex_Sans } from "next/font/google";
 import Footer from "@/components/Footer";
+import FeedbackButton from "@/components/FeedbackButton";
 import "./globals.css";
 
 const chakraPetch = Chakra_Petch({
@@ -82,6 +83,7 @@ export default function RootLayout({
       >
         {children}
         <Footer />
+        <FeedbackButton />
         {/* Adsterra Social Bar (push notification style ads) */}
         <script
           async
