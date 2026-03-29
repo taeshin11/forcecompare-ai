@@ -1,32 +1,73 @@
 "use client";
 
+import Link from "next/link";
 import VisitorCounter from "./VisitorCounter";
 
 export default function Footer() {
   return (
     <footer className="border-t border-[var(--color-card-border)] mt-auto">
-      <div className="max-w-5xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-gray-500">
-        <div className="flex items-center gap-4">
-          <span>
-            Data source:{" "}
-            <a
-              href="https://www.globalfirepower.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[var(--color-gold-400)] hover:underline transition-colors"
-            >
-              Global Firepower Index
-            </a>
-          </span>
-          <span className="hidden md:inline">|</span>
-          <span>ForceCompare AI &copy; {new Date().getFullYear()}</span>
+      <div className="max-w-5xl mx-auto px-4 py-8">
+        {/* Navigation links */}
+        <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 mb-6 text-sm">
+          <Link
+            href="/about"
+            className="text-gray-400 hover:text-[var(--color-gold-400)] hover:underline transition-colors"
+          >
+            About Us
+          </Link>
+          <Link
+            href="/how-to-use"
+            className="text-gray-400 hover:text-[var(--color-gold-400)] hover:underline transition-colors"
+          >
+            How to Use
+          </Link>
+          <Link
+            href="/privacy"
+            className="text-gray-400 hover:text-[var(--color-gold-400)] hover:underline transition-colors"
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            href="/terms"
+            className="text-gray-400 hover:text-[var(--color-gold-400)] hover:underline transition-colors"
+          >
+            Terms of Service
+          </Link>
         </div>
-        <div className="flex items-center gap-4">
-          <VisitorCounter />
-          <span className="text-gray-600">|</span>
-          <span className="text-gray-600">
-            Ad-supported — ads help keep this tool free
-          </span>
+
+        {/* Feedback link — subtle, non-intrusive */}
+        <div className="flex justify-center mb-5">
+          <a
+            href="mailto:taeshinkim11@gmail.com?subject=ForceCompare%20AI%20Feedback"
+            className="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-[var(--color-gold-400)] transition-colors"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+            </svg>
+            Suggestions? Send us feedback
+          </a>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-gray-500 pt-4 border-t border-[var(--color-card-border)]">
+          <div className="flex items-center gap-4">
+            <span>
+              Data:{" "}
+              <a
+                href="https://www.globalfirepower.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-[var(--color-gold-400)] hover:underline transition-colors"
+              >
+                Global Firepower Index
+              </a>
+            </span>
+            <span className="hidden md:inline">|</span>
+            <span>&copy; {new Date().getFullYear()} ForceCompare AI</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <VisitorCounter />
+          </div>
         </div>
       </div>
     </footer>
