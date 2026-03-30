@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Chakra_Petch, IBM_Plex_Sans } from "next/font/google";
 import Footer from "@/components/Footer";
 import FeedbackButton from "@/components/FeedbackButton";
+import { I18nProvider } from "@/lib/i18n/context";
 import "./globals.css";
 
 const chakraPetch = Chakra_Petch({
@@ -42,6 +43,17 @@ export const metadata: Metadata = {
     "military strength by country",
     "compare military forces",
     "military simulator",
+    "USA vs Russia military",
+    "USA vs China military",
+    "India vs Pakistan military",
+    "military ranking 2026",
+    "strongest army in the world",
+    "world military power ranking",
+    "군사력 비교",
+    "军事力量对比",
+    "軍事力比較",
+    "comparación militar",
+    "Militärvergleich",
   ],
   openGraph: {
     title: "ForceCompare AI — Military Power Matchup Simulator",
@@ -121,6 +133,52 @@ export default function RootLayout({
                   contactType: "customer support",
                 },
               },
+              {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: "How does ForceCompare AI compare military strength?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "ForceCompare AI uses a weighted composite scoring system analyzing 6 categories: Military Personnel (15%), Air Power (25%), Army Strength (20%), Naval Power (20%), Resources & Budget (10%), and Logistics & Geography (10%). Data is sourced from the Global Firepower Index.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Which country has the strongest military in 2026?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Based on Global Firepower data, the United States leads with the highest Force Rating, followed by Russia and China. Visit ForceCompare AI to see the full ranking and compare any two countries.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Is ForceCompare AI free to use?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Yes, ForceCompare AI is completely free with no sign-up required. Compare military strength between any two countries instantly.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "How many countries can I compare?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "ForceCompare AI includes military data for over 50 countries covering all major and regional military powers worldwide.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Does the comparison include nuclear weapons?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "No. ForceCompare AI is a numerical comparison of conventional military assets. It does not account for nuclear capabilities, alliance networks, technology quality, cyber warfare, or troop morale.",
+                    },
+                  },
+                ],
+              },
             ]),
           }}
         />
@@ -129,9 +187,11 @@ export default function RootLayout({
         className="min-h-full flex flex-col"
         style={{ fontFamily: "var(--font-body)" }}
       >
+        <I18nProvider>
         {children}
         <Footer />
         <FeedbackButton />
+        </I18nProvider>
         {/* Adsterra Social Bar (push notification style ads) */}
         <script
           async

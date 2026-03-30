@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useI18n } from "@/lib/i18n/context";
 
 interface ShareButtonsProps {
   countryA: string;
@@ -18,6 +19,7 @@ export default function ShareButtons({
   scoreB,
 }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false);
+  const { t } = useI18n();
   const url = typeof window !== "undefined" ? window.location.href : "";
   const text = `${countryA} vs ${countryB} — ${winner} wins with a ${Math.max(scoreA, scoreB).toFixed(1)} Force Rating! Compare military strength:`;
 
@@ -77,7 +79,7 @@ export default function ShareButtons({
 
   return (
     <div className="flex flex-wrap items-center justify-center gap-2 py-4 px-4">
-      <span className="text-xs text-gray-500 mr-1">Share:</span>
+      <span className="text-xs text-gray-500 mr-1">{t.share}:</span>
       <button
         onClick={shareTwitter}
         className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1da1f2]/10 text-[#1da1f2] hover:bg-[#1da1f2]/20 transition-colors text-xs font-medium"
@@ -136,7 +138,7 @@ export default function ShareButtons({
         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
         </svg>
-        {copied ? "Copied!" : "Copy"}
+        {copied ? t.copied : t.copy}
       </button>
     </div>
   );

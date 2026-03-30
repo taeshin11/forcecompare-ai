@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import type { Country } from "@/lib/types";
+import { useI18n } from "@/lib/i18n/context";
 
 interface CountrySelectorProps {
   countries: Country[];
@@ -29,6 +30,7 @@ function Dropdown({
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const ref = useRef<HTMLDivElement>(null);
+  const { t } = useI18n();
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -63,7 +65,7 @@ function Dropdown({
             <span className="text-white font-medium">{selected.name}</span>
           </>
         ) : (
-          <span className="text-gray-500">Select a country...</span>
+          <span className="text-gray-500">{t.select_country}</span>
         )}
         <svg
           className="ml-auto w-4 h-4 text-gray-400"
@@ -85,7 +87,7 @@ function Dropdown({
           <div className="p-2 border-b border-[var(--color-card-border)]">
             <input
               type="text"
-              placeholder="Search..."
+              placeholder={t.search}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               aria-label={`Search countries for ${label}`}
@@ -112,7 +114,7 @@ function Dropdown({
             ))}
             {filtered.length === 0 && (
               <p className="text-gray-500 text-sm text-center py-3">
-                No countries found
+                {t.no_countries_found}
               </p>
             )}
           </div>
@@ -131,6 +133,7 @@ export default function CountrySelector({
   onCompare,
   isComparing,
 }: CountrySelectorProps) {
+  const { t } = useI18n();
   const canCompare = selectedA && selectedB;
 
   return (
@@ -138,7 +141,7 @@ export default function CountrySelector({
       <div className="max-w-4xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
           <Dropdown
-            label="Country A"
+            label={t.country_a}
             countries={countries}
             selected={selectedA}
             onSelect={onSelectA}
@@ -148,7 +151,7 @@ export default function CountrySelector({
             VS
           </div>
           <Dropdown
-            label="Country B"
+            label={t.country_b}
             countries={countries}
             selected={selectedB}
             onSelect={onSelectB}
@@ -182,10 +185,10 @@ export default function CountrySelector({
                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
                   />
                 </svg>
-                Analyzing...
+                {t.analyzing}
               </span>
             ) : (
-              "Compare Forces"
+              t.compare_forces
             )}
           </button>
         </div>

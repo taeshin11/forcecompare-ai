@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { ComparisonResult } from "@/lib/types";
 import type { Country } from "@/lib/types";
+import { useI18n } from "@/lib/i18n/context";
 import VerdictBanner from "@/components/VerdictBanner";
 import ComparisonDashboard from "@/components/ComparisonDashboard";
 import ShareButtons from "@/components/ShareButtons";
@@ -30,6 +31,8 @@ export default function ComparePageClient({
   allCountries,
   relatedMatchups,
 }: ComparePageClientProps) {
+  const { t } = useI18n();
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -52,7 +55,7 @@ export default function ComparePageClient({
         <ol className="flex items-center gap-2 text-sm text-gray-500">
           <li>
             <Link href="/" className="hover:text-[var(--color-gold-400)] transition-colors">
-              Home
+              {t.compare_breadcrumb_home}
             </Link>
           </li>
           <li aria-hidden="true">/</li>
@@ -73,7 +76,7 @@ export default function ComparePageClient({
           {result.countryB.flag} {result.countryB.name}
         </h1>
         <p className="text-gray-400 mt-2 text-sm">
-          Military Power Comparison — Side-by-side analysis of army, navy, air force, and resources
+          {t.compare_subtitle}
         </p>
       </section>
 
@@ -103,7 +106,7 @@ export default function ComparePageClient({
               className="text-xl font-bold text-white text-center mb-6"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Related Comparisons
+              {t.compare_related}
             </h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {relatedMatchups.map((m) => (
@@ -135,7 +138,7 @@ export default function ComparePageClient({
             href="/"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-[var(--color-gold-500)] to-[var(--color-gold-400)] text-[var(--color-navy-950)] font-bold hover:shadow-lg hover:shadow-[var(--color-gold-500)]/20 transition-all"
           >
-            Compare Any Two Countries
+            {t.compare_any}
           </Link>
         </div>
       </section>

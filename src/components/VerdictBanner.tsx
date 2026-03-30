@@ -1,22 +1,24 @@
 "use client";
 
 import type { ComparisonResult } from "@/lib/types";
+import { useI18n } from "@/lib/i18n/context";
 
 interface VerdictBannerProps {
   result: ComparisonResult;
 }
 
 export default function VerdictBanner({ result }: VerdictBannerProps) {
+  const { t } = useI18n();
   const { countryA, countryB, scoreA, scoreB, winner } = result;
   const loser = winner.code === countryA.code ? countryB : countryA;
   const winnerScore = winner.code === countryA.code ? scoreA : scoreB;
   const loserScore = winner.code === countryA.code ? scoreB : scoreA;
   const diff = Math.abs(scoreA - scoreB);
 
-  let verdictText = "has stronger military forces on paper";
-  if (diff < 3) verdictText = "has a marginal edge in military strength";
-  else if (diff < 10) verdictText = "holds a moderate military advantage";
-  else if (diff >= 25) verdictText = "dominates in military power";
+  let verdictText = t.verdict_strong;
+  if (diff < 3) verdictText = t.verdict_marginal;
+  else if (diff < 10) verdictText = t.verdict_moderate;
+  else if (diff >= 25) verdictText = t.verdict_dominant;
 
   return (
     <section className="px-4 py-10">
@@ -27,7 +29,7 @@ export default function VerdictBanner({ result }: VerdictBannerProps) {
             <div className="text-center">
               <div
                 className="w-24 h-24 rounded-full flex items-center justify-center text-3xl font-bold border-4 mx-auto mb-2"
-                aria-label={`Force rating for ${countryA.name}: ${scoreA.toFixed(1)}`}
+                aria-label={`${t.force_rating} ${countryA.name}: ${scoreA.toFixed(1)}`}
                 style={{
                   borderColor:
                     winner.code === countryA.code
@@ -47,7 +49,7 @@ export default function VerdictBanner({ result }: VerdictBannerProps) {
             <div className="text-center">
               <div
                 className="w-24 h-24 rounded-full flex items-center justify-center text-3xl font-bold border-4 mx-auto mb-2"
-                aria-label={`Force rating for ${countryB.name}: ${scoreB.toFixed(1)}`}
+                aria-label={`${t.force_rating} ${countryB.name}: ${scoreB.toFixed(1)}`}
                 style={{
                   borderColor:
                     winner.code === countryB.code
@@ -75,7 +77,7 @@ export default function VerdictBanner({ result }: VerdictBannerProps) {
             {verdictText}
           </h2>
           <p className="text-gray-400 text-sm">
-            Force Rating: {winner.name}{" "}
+            {t.force_rating}: {winner.name}{" "}
             <span className="text-[var(--color-gold-400)] font-semibold">
               {winnerScore.toFixed(1)}
             </span>{" "}
@@ -83,7 +85,7 @@ export default function VerdictBanner({ result }: VerdictBannerProps) {
             <span className="text-gray-300 font-semibold">
               {loserScore.toFixed(1)}
             </span>{" "}
-            out of 100
+            {t.out_of_100}
           </p>
         </div>
       </div>

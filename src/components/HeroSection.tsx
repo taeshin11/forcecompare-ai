@@ -1,6 +1,10 @@
 "use client";
 
+import { useI18n } from "@/lib/i18n/context";
+
 export default function HeroSection() {
+  const { t } = useI18n();
+
   return (
     <section className="relative overflow-hidden py-16 px-4 text-center">
       {/* Animated gradient background */}
@@ -30,11 +34,10 @@ export default function HeroSection() {
           </span>
         </h1>
         <p className="text-xl md:text-2xl text-gray-300 font-light mb-2">
-          Military Power Matchup
+          {t.hero_subtitle}
         </p>
         <p className="text-base text-gray-400 max-w-xl mx-auto">
-          Select two nations. See who dominates. Compare military strength
-          across land, air, sea, and resources.
+          {t.hero_description}
         </p>
       </div>
     </section>

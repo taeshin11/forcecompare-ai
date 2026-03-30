@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import type { Country, ComparisonResult } from "@/lib/types";
 import { compareCountries } from "@/lib/calculatePowerScore";
 import { trackComparison } from "@/lib/trackComparison";
+import { useI18n } from "@/lib/i18n/context";
 import HeroSection from "@/components/HeroSection";
 import CountrySelector from "@/components/CountrySelector";
 import ComparisonDashboard from "@/components/ComparisonDashboard";
@@ -17,6 +18,7 @@ import ShareButtons from "@/components/ShareButtons";
 function CompareApp() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { t } = useI18n();
   const [countries, setCountries] = useState<Country[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -54,11 +56,11 @@ function CompareApp() {
         }
       })
       .catch((err) => {
-        setError("Failed to load military data. Please refresh the page.");
+        setError(t.load_failed);
         setLoading(false);
         console.error("Data load failed:", err);
       });
-  }, [searchParams]);
+  }, [searchParams, t.load_failed]);
 
   const handleCompare = useCallback(() => {
     if (!selectedA || !selectedB) return;
@@ -96,7 +98,7 @@ function CompareApp() {
       <div className="flex-1 flex items-center justify-center" role="status" aria-label="Loading">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-[var(--color-gold-500)] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-gray-400">Loading military data...</p>
+          <p className="text-gray-400">{t.loading_data}</p>
         </div>
       </div>
     );
@@ -111,7 +113,7 @@ function CompareApp() {
             onClick={() => window.location.reload()}
             className="px-6 py-2 rounded-lg bg-[var(--color-gold-500)] text-[var(--color-navy-950)] font-medium"
           >
-            Retry
+            {t.retry}
           </button>
         </div>
       </div>
@@ -136,7 +138,7 @@ function CompareApp() {
         <div className="flex items-center justify-center py-12" role="status" aria-label="Analyzing">
           <div className="text-center">
             <div className="w-10 h-10 border-4 border-[var(--color-gold-500)] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-            <p className="text-gray-400 text-sm">Analyzing forces...</p>
+            <p className="text-gray-400 text-sm">{t.analyzing}</p>
           </div>
         </div>
       )}
@@ -163,7 +165,7 @@ function CompareApp() {
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
               </svg>
-              Missing a country or have a suggestion? Let us know
+              {t.feedback_suggestion}
             </a>
           </div>
         </div>

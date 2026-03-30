@@ -8,11 +8,20 @@ import type { Country } from "@/lib/types";
 
 const allCountries = countriesData.countries as Country[];
 
+// Allow any country pair, not just pre-generated ones
+export const dynamicParams = true;
+
+function findByCode(code: string): Country | undefined {
+  return allCountries.find((c) => c.code.toLowerCase() === code.toLowerCase());
+}
+
 function parseSlug(slug: string): { a: Country; b: Country } | null {
   const parts = slug.split("-vs-");
   if (parts.length !== 2) return null;
-  const a = findBySlug(allCountries, parts[0]);
-  const b = findBySlug(allCountries, parts[1]);
+
+  // Try full name slug first, then try country code
+  const a = findBySlug(allCountries, parts[0]) || findByCode(parts[0]);
+  const b = findBySlug(allCountries, parts[1]) || findByCode(parts[1]);
   if (!a || !b || a.code === b.code) return null;
   return { a, b };
 }

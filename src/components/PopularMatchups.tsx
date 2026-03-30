@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
+import { useI18n } from "@/lib/i18n/context";
 
 const matchups = [
   { slug: "united-states-vs-russia", flagA: "\ud83c\uddfa\ud83c\uddf8", flagB: "\ud83c\uddf7\ud83c\uddfa", nameA: "USA", nameB: "Russia" },
@@ -33,6 +34,7 @@ const countryCodes = [
 
 export default function PopularMatchups() {
   const router = useRouter();
+  const { t } = useI18n();
 
   const handleRandom = useCallback(() => {
     const i = Math.floor(Math.random() * countryCodes.length);
@@ -48,10 +50,10 @@ export default function PopularMatchups() {
           className="text-xl font-bold text-white text-center mb-2"
           style={{ fontFamily: "var(--font-display)" }}
         >
-          Popular Matchups
+          {t.popular_matchups}
         </h2>
         <p className="text-gray-500 text-sm text-center mb-6">
-          Click to see detailed military comparison
+          {t.popular_matchups_desc}
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
           {matchups.map((m) => (
@@ -82,7 +84,7 @@ export default function PopularMatchups() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
-            Random Matchup
+            {t.random_matchup}
           </button>
         </div>
       </div>
