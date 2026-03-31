@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { Chakra_Petch, IBM_Plex_Sans } from "next/font/google";
 import Footer from "@/components/Footer";
 import FeedbackButton from "@/components/FeedbackButton";
-import { I18nProvider, LOCALE_DETECT_SCRIPT } from "@/lib/i18n/context";
+import { I18nProvider } from "@/lib/i18n/context";
+
+// Inline script runs BEFORE React to detect locale and set data-locale on <html>
+// This prevents flash of English content for non-English users
+const LOCALE_DETECT_SCRIPT = `(function(){var S=["en","ko","zh","ja","es","pt","ar","hi","ru","de","fr","tr"];var l="en";try{var s=localStorage.getItem("fc-locale");if(s&&S.indexOf(s)!==-1){l=s}else{var b=navigator.languages||[navigator.language];for(var i=0;i<b.length;i++){var c=b[i].split("-")[0].toLowerCase();if(S.indexOf(c)!==-1){l=c;break}}}}catch(e){}document.documentElement.setAttribute("data-locale",l);document.documentElement.lang=l;if(l==="ar")document.documentElement.dir="rtl";})();`;
 import "./globals.css";
 
 const chakraPetch = Chakra_Petch({
