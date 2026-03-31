@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Chakra_Petch, IBM_Plex_Sans } from "next/font/google";
 import Footer from "@/components/Footer";
 import FeedbackButton from "@/components/FeedbackButton";
-import { I18nProvider } from "@/lib/i18n/context";
+import { I18nProvider, LOCALE_DETECT_SCRIPT } from "@/lib/i18n/context";
 import "./globals.css";
 
 const chakraPetch = Chakra_Petch({
@@ -95,6 +95,8 @@ export default function RootLayout({
       className={`${chakraPetch.variable} ${ibmPlexSans.variable} h-full antialiased`}
     >
       <head>
+        {/* Detect locale BEFORE React hydrates — prevents flash of English */}
+        <script dangerouslySetInnerHTML={{ __html: LOCALE_DETECT_SCRIPT }} />
         <meta name="google-site-verification" content="WddgcbVJsL2BGHNAje5m6DK56IcR0Mw5UOqozI2Xtrc" />
         {/* Google AdSense auto-ads */}
         <script

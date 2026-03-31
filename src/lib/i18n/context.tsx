@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, useCallback } from "react";
+import { createContext, useContext, useState, useCallback, useEffect } from "react";
 import { translations, SUPPORTED_LOCALES, type Locale, type TranslationKeys } from "./translations";
 
 interface I18nContextType {
@@ -15,16 +15,22 @@ const I18nContext = createContext<I18nContextType>({
   t: translations.en,
 });
 
-function detectLocale(): Locale {
+/** Read locale that was pre-detected by the inline script in <head> */
+function getInitialLocale(): Locale {
   if (typeof window === "undefined") return "en";
 
-  // Check localStorage first
+  // Read from the data attribute set by the inline <head> script
+  const htmlLocale = document.documentElement.getAttribute("data-locale");
+  if (htmlLocale && SUPPORTED_LOCALES.includes(htmlLocale as Locale)) {
+    return htmlLocale as Locale;
+  }
+
+  // Fallback: detect here
   const saved = localStorage.getItem("fc-locale");
   if (saved && SUPPORTED_LOCALES.includes(saved as Locale)) {
     return saved as Locale;
   }
 
-  // Detect from browser
   const browserLangs = navigator.languages || [navigator.language];
   for (const lang of browserLangs) {
     const short = lang.split("-")[0].toLowerCase();
@@ -37,36 +43,21 @@ function detectLocale(): Locale {
 }
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setLocaleState(detectLocale());
-    setMounted(true);
-  }, []);
+  const [locale, setLocaleState] = useState<Locale>(() => getInitialLocale());
 
   const setLocale = useCallback((newLocale: Locale) => {
     setLocaleState(newLocale);
     localStorage.setItem("fc-locale", newLocale);
     document.documentElement.lang = newLocale;
-    if (newLocale === "ar") {
-      document.documentElement.dir = "rtl";
-    } else {
-      document.documentElement.dir = "ltr";
-    }
+    document.documentElement.setAttribute("data-locale", newLocale);
+    document.documentElement.dir = newLocale === "ar" ? "rtl" : "ltr";
   }, []);
 
-  // Update html lang on mount
   useEffect(() => {
-    if (mounted) {
-      document.documentElement.lang = locale;
-      if (locale === "ar") {
-        document.documentElement.dir = "rtl";
-      } else {
-        document.documentElement.dir = "ltr";
-      }
-    }
-  }, [locale, mounted]);
+    document.documentElement.lang = locale;
+    document.documentElement.setAttribute("data-locale", locale);
+    document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
+  }, [locale]);
 
   const t = translations[locale];
 
@@ -80,3 +71,29 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
 export function useI18n() {
   return useContext(I18nContext);
 }
+
+/**
+ * Inline script to inject in <head> BEFORE React hydrates.
+ * This detects locale immediately and sets data-locale on <html>,
+ * so React can read it synchronously on first render.
+ */
+export const LOCALE_DETECT_SCRIPT = `
+(function(){
+  var S=["en","ko","zh","ja","es","pt","ar","hi","ru","de","fr","tr"];
+  var l="en";
+  try{
+    var s=localStorage.getItem("fc-locale");
+    if(s&&S.indexOf(s)!==-1){l=s}
+    else{
+      var b=navigator.languages||[navigator.language];
+      for(var i=0;i<b.length;i++){
+        var c=b[i].split("-")[0].toLowerCase();
+        if(S.indexOf(c)!==-1){l=c;break}
+      }
+    }
+  }catch(e){}
+  document.documentElement.setAttribute("data-locale",l);
+  document.documentElement.lang=l;
+  if(l==="ar")document.documentElement.dir="rtl";
+})();
+`;
