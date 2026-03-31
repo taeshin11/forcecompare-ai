@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { cookies } from "next/headers";
 import { Chakra_Petch, IBM_Plex_Sans } from "next/font/google";
 import Footer from "@/components/Footer";
 import FeedbackButton from "@/components/FeedbackButton";
 import { I18nProvider } from "@/lib/i18n/context";
+import { SUPPORTED_LOCALES, type Locale } from "@/lib/i18n/translations";
 import "./globals.css";
 
 const chakraPetch = Chakra_Petch({
@@ -85,14 +87,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Read locale from cookie (set by proxy.ts from Accept-Language header)
+  const cookieStore = await cookies();
+  const cookieLocale = cookieStore.get("fc-locale")?.value;
+  const serverLocale: Locale = (cookieLocale && SUPPORTED_LOCALES.includes(cookieLocale as Locale))
+    ? cookieLocale as Locale
+    : "en";
+
   return (
     <html
-      lang="en"
+      lang={serverLocale}
+      dir={serverLocale === "ar" ? "rtl" : "ltr"}
       suppressHydrationWarning
       className={`${chakraPetch.variable} ${ibmPlexSans.variable} h-full antialiased`}
     >
@@ -197,7 +207,7 @@ export default function RootLayout({
             __html: `(function(){var S=["en","ko","zh","ja","es","pt","ar","hi","ru","de","fr","tr"];var l="en";try{var s=localStorage.getItem("fc-locale");if(s&&S.indexOf(s)!==-1){l=s}else{var b=navigator.languages||[navigator.language];for(var i=0;i<b.length;i++){var c=b[i].split("-")[0].toLowerCase();if(S.indexOf(c)!==-1){l=c;break}}}}catch(e){}document.documentElement.setAttribute("data-locale",l);document.documentElement.lang=l;if(l==="ar")document.documentElement.dir="rtl";})();`,
           }}
         />
-        <I18nProvider>
+        <I18nProvider serverLocale={serverLocale}>
         {children}
         <Footer />
         <FeedbackButton />

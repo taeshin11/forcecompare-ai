@@ -15,56 +15,32 @@ const I18nContext = createContext<I18nContextType>({
   t: translations.en,
 });
 
-function detectLocale(): Locale {
-  if (typeof window === "undefined") return "en";
+export function I18nProvider({
+  children,
+  serverLocale,
+}: {
+  children: React.ReactNode;
+  serverLocale: Locale;
+}) {
+  // Initialize with server-detected locale — no flash of wrong language
+  const [locale, setLocaleState] = useState<Locale>(serverLocale);
 
-  // Check data-locale attribute (set by inline script before React)
-  const htmlLocale = document.documentElement.getAttribute("data-locale");
-  if (htmlLocale && SUPPORTED_LOCALES.includes(htmlLocale as Locale)) {
-    return htmlLocale as Locale;
-  }
-
-  // Fallback: localStorage
-  const saved = localStorage.getItem("fc-locale");
-  if (saved && SUPPORTED_LOCALES.includes(saved as Locale)) {
-    return saved as Locale;
-  }
-
-  // Fallback: browser language
-  const browserLangs = navigator.languages || [navigator.language];
-  for (const lang of browserLangs) {
-    const short = lang.split("-")[0].toLowerCase();
-    if (SUPPORTED_LOCALES.includes(short as Locale)) {
-      return short as Locale;
-    }
-  }
-
-  return "en";
-}
-
-export function I18nProvider({ children }: { children: React.ReactNode }) {
-  // Start with "en" to match server render, then immediately update on mount
-  const [locale, setLocaleState] = useState<Locale>("en");
-
-  // On mount, detect actual locale and update
+  // On mount, check if user has a localStorage override
   useEffect(() => {
-    const detected = detectLocale();
-    if (detected !== "en") {
-      setLocaleState(detected);
+    const saved = localStorage.getItem("fc-locale");
+    if (saved && SUPPORTED_LOCALES.includes(saved as Locale) && saved !== locale) {
+      setLocaleState(saved as Locale);
+      document.documentElement.lang = saved;
+      // Sync cookie with localStorage choice
+      document.cookie = `fc-locale=${saved};path=/;max-age=${365 * 24 * 60 * 60};samesite=lax`;
     }
-    // Also update the html attributes
-    document.documentElement.lang = detected;
-    document.documentElement.setAttribute("data-locale", detected);
-    if (detected === "ar") {
-      document.documentElement.dir = "rtl";
-    }
-  }, []);
+  }, [locale]);
 
   const setLocale = useCallback((newLocale: Locale) => {
     setLocaleState(newLocale);
     localStorage.setItem("fc-locale", newLocale);
+    document.cookie = `fc-locale=${newLocale};path=/;max-age=${365 * 24 * 60 * 60};samesite=lax`;
     document.documentElement.lang = newLocale;
-    document.documentElement.setAttribute("data-locale", newLocale);
     document.documentElement.dir = newLocale === "ar" ? "rtl" : "ltr";
   }, []);
 
