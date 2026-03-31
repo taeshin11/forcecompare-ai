@@ -93,6 +93,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${chakraPetch.variable} ${ibmPlexSans.variable} h-full antialiased`}
     >
       <head>
