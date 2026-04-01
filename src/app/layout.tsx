@@ -84,6 +84,21 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://forcecompare-ai.vercel.app",
+    languages: {
+      "x-default": "https://forcecompare-ai.vercel.app",
+      en: "https://forcecompare-ai.vercel.app",
+      ko: "https://forcecompare-ai.vercel.app",
+      ja: "https://forcecompare-ai.vercel.app",
+      zh: "https://forcecompare-ai.vercel.app",
+      es: "https://forcecompare-ai.vercel.app",
+      de: "https://forcecompare-ai.vercel.app",
+      fr: "https://forcecompare-ai.vercel.app",
+      pt: "https://forcecompare-ai.vercel.app",
+      ar: "https://forcecompare-ai.vercel.app",
+      hi: "https://forcecompare-ai.vercel.app",
+      ru: "https://forcecompare-ai.vercel.app",
+      tr: "https://forcecompare-ai.vercel.app",
+    },
   },
 };
 
