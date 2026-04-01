@@ -29,7 +29,7 @@ export default function Footer() {
             href="/ranking"
             className="text-gray-400 hover:text-[var(--color-gold-400)] hover:underline transition-colors"
           >
-            {t.ranking_title.replace(/\s*2026$/, "")}
+            {t.ranking_title.replace(/\s*2025$/, "")}
           </Link>
           <Link
             href="/privacy"

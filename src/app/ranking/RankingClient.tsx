@@ -16,7 +16,7 @@ export default function RankingClient({ rankings }: { rankings: RankingEntry[] }
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "World Military Power Rankings 2026",
+    name: "World Military Power Rankings 2025",
     description: "Global military strength rankings based on composite Force Rating scores.",
     numberOfItems: rankings.length,
     itemListElement: rankings.slice(0, 20).map((r, i) => ({

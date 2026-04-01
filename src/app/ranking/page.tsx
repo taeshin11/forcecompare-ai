@@ -7,13 +7,13 @@ import RankingClient from "./RankingClient";
 const allCountries = countriesData.countries as Country[];
 
 export const metadata: Metadata = {
-  title: "World Military Power Rankings 2026 — Top 50+ Countries",
+  title: "World Military Power Rankings 2025 — Top 50+ Countries",
   description:
-    "Complete military strength rankings for 2026. See which countries have the strongest armies, navies, and air forces. Compare Force Ratings across 50+ nations using Global Firepower data.",
+    "Complete military strength rankings for 2025. See which countries have the strongest armies, navies, and air forces. Compare Force Ratings across 50+ nations using Global Firepower data.",
   keywords: [
     "military power ranking",
     "strongest military in the world",
-    "military strength ranking 2026",
+    "military strength ranking 2025",
     "top military powers",
     "world military rankings",
     "strongest army in the world",
@@ -22,10 +22,10 @@ export const metadata: Metadata = {
     "best military in the world",
     "country military ranking",
     "military ranking by country",
-    "strongest military 2026",
+    "strongest military 2025",
   ],
   openGraph: {
-    title: "World Military Power Rankings 2026 — ForceCompare AI",
+    title: "World Military Power Rankings 2025 — ForceCompare AI",
     description:
       "Complete ranking of 50+ nations by military strength. See who has the strongest army, navy, and air force.",
     url: "https://forcecompare-ai.vercel.app/ranking",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "World Military Power Rankings 2026",
+    title: "World Military Power Rankings 2025",
     description:
       "Complete ranking of 50+ nations by military strength.",
   },

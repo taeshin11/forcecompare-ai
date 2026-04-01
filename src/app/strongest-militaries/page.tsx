@@ -7,23 +7,23 @@ import { toSlug } from "@/lib/countryUtils";
 const allCountries = countriesData.countries as Country[];
 
 export const metadata: Metadata = {
-  title: "Top 10 Strongest Militaries in the World 2026",
+  title: "Top 10 Strongest Militaries in the World 2025",
   description:
-    "Discover the top 10 most powerful militaries in the world for 2026. Ranked by composite Force Rating analyzing army, navy, air force, defense budget, and resources. Updated with latest Global Firepower data.",
+    "Discover the top 10 most powerful militaries in the world for 2025. Ranked by composite Force Rating analyzing army, navy, air force, defense budget, and resources. Updated with latest Global Firepower data.",
   keywords: [
     "strongest military in the world",
     "top 10 military powers",
-    "most powerful military 2026",
+    "most powerful military 2025",
     "strongest army in the world",
     "best military in the world",
-    "top military powers 2026",
+    "top military powers 2025",
     "world strongest military",
     "military superpowers",
     "strongest armed forces",
     "top 10 armies in the world",
   ],
   openGraph: {
-    title: "Top 10 Strongest Militaries in the World 2026 — ForceCompare AI",
+    title: "Top 10 Strongest Militaries in the World 2025 — ForceCompare AI",
     description:
       "Ranked by composite Force Rating: army, navy, air force, budget, and resources.",
     url: "https://forcecompare-ai.vercel.app/strongest-militaries",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Top 10 Strongest Militaries in the World 2026",
+    title: "Top 10 Strongest Militaries in the World 2025",
     description:
       "Which countries have the most powerful armed forces? See the definitive ranking.",
   },
@@ -118,13 +118,13 @@ export default function StrongestMilitariesPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Top 10 Strongest Militaries in the World 2026",
+    headline: "Top 10 Strongest Militaries in the World 2025",
     description: "Comprehensive ranking of the world's most powerful military forces based on composite Force Rating analysis.",
     author: { "@type": "Organization", name: "ForceCompare AI" },
     publisher: { "@type": "Organization", name: "ForceCompare AI" },
     mainEntityOfPage: "https://forcecompare-ai.vercel.app/strongest-militaries",
-    datePublished: "2026-03-01",
-    dateModified: "2026-03-31",
+    datePublished: "2025-03-01",
+    dateModified: "2025-03-31",
   };
 
   return (
@@ -147,7 +147,7 @@ export default function StrongestMilitariesPage() {
           className="text-3xl md:text-4xl font-bold text-white text-center tracking-tight mb-4"
           style={{ fontFamily: "var(--font-display)" }}
         >
-          Top 10 Strongest Militaries in the World 2026
+          Top 10 Strongest Militaries in the World 2025
         </h1>
         <p className="text-gray-400 text-center text-sm mb-10 max-w-2xl mx-auto">
           Ranked by ForceCompare AI&apos;s composite Force Rating — analyzing military personnel, air power, army strength, naval power, resources, and logistics using Global Firepower data.

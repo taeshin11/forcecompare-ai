@@ -48,7 +48,7 @@ export async function generateMetadata(props: {
   const { a, b } = parsed;
   const result = compareCountries(a, b, allCountries);
 
-  const title = `${a.name} vs ${b.name} Military Comparison 2026 — ForceCompare AI`;
+  const title = `${a.name} vs ${b.name} Military Comparison 2025 — ForceCompare AI`;
   const description = `Compare ${a.name} vs ${b.name} military strength. ${result.winner.name} leads with a ${Math.max(result.scoreA, result.scoreB).toFixed(1)} Force Rating. Side-by-side analysis of army, navy, air force, defense budget, and more.`;
 
   return {
