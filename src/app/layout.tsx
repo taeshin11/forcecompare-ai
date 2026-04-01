@@ -25,7 +25,7 @@ const ibmPlexSans = IBM_Plex_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://forcecompare-ai.vercel.app"),
   title: {
-    default: "ForceCompare AI — Military Power Matchup Simulator 2026",
+    default: "ForceCompare AI — Military Power Matchup Simulator 2025",
     template: "%s | ForceCompare AI",
   },
   description:
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     "USA vs Russia military",
     "USA vs China military",
     "India vs Pakistan military",
-    "military ranking 2026",
+    "military ranking 2025",
     "strongest army in the world",
     "world military power ranking",
     "군사력 비교",
@@ -174,7 +174,7 @@ export default async function RootLayout({
                   },
                   {
                     "@type": "Question",
-                    name: "Which country has the strongest military in 2026?",
+                    name: "Which country has the strongest military in 2025?",
                     acceptedAnswer: {
                       "@type": "Answer",
                       text: "Based on Global Firepower data, the United States leads with the highest Force Rating, followed by Russia and China. Visit ForceCompare AI to see the full ranking and compare any two countries.",
