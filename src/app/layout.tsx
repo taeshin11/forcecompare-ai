@@ -122,6 +122,7 @@ export default async function RootLayout({
       className={`${chakraPetch.variable} ${ibmPlexSans.variable} h-full antialiased`}
     >
       <head>
+        <meta name="naver-site-verification" content="320506a0c5e342a6e5cf56ab617fa69b3d143239" />
         <meta name="google-site-verification" content="WddgcbVJsL2BGHNAje5m6DK56IcR0Mw5UOqozI2Xtrc" />
         {/* Google AdSense auto-ads */}
         <script
